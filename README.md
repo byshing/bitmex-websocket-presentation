@@ -1,6 +1,6 @@
 # BitMEX WebSocket Data & State Management Presentation
 
-An interactive presentation built with Reveal.js covering BitMEX WebSocket data types, operations, and state management strategies.
+An interactive presentation built with React and Spectacle covering BitMEX WebSocket data types, operations, and state management strategies.
 
 ## Overview
 
@@ -22,62 +22,109 @@ This presentation covers:
    - State Update Feeds (positions, margins)
    - Order Book Feeds (mixed operations)
 
-## How to Use
+## Technology Stack
 
-### Option 1: Open Directly in Browser
-Simply open `index.html` in your web browser. The presentation uses CDN links for all dependencies.
+- **React 19**: Modern React with latest features
+- **Vite**: Fast build tool and development server
+- **Spectacle**: React-based presentation framework
+- **Styled Components**: CSS-in-JS for styling
+- **Prism.js**: Syntax highlighting for code examples
 
-### Option 2: Local Server (Recommended)
-For better performance and to avoid CORS issues:
+## Quick Start
 
 ```bash
-# Using Python 3
-python -m http.server 8000
+# Install dependencies
+npm install
 
-# Using Node.js (if you have http-server installed)
-npx http-server
+# Start development server
+npm run dev
+# or
+npm start
 
-# Using PHP
-php -S localhost:8000
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-Then navigate to `http://localhost:8000` in your browser.
+The presentation will be available at `http://localhost:5173`
+
+## Features
+
+### Interactive Presentation
+- **Spectacle-powered slides**: Professional presentation framework
+- **Keyboard navigation**: Arrow keys, space bar for navigation
+- **Responsive design**: Works on desktop and mobile devices
+- **Syntax-highlighted code**: JavaScript and JSON examples
+- **Visual diagrams**: Operation flow and feed type illustrations
+
+### Live Demo
+- **Simulated WebSocket connection**: See concepts in action
+- **Real-time logging**: Watch message flow
+- **Sample messages**: Examples of all operation types
+- **Statistics tracking**: Message counts and timing
 
 ## Navigation
 
+### Presentation Mode
 - **Arrow Keys**: Navigate between slides
 - **Space**: Next slide
-- **ESC**: Overview mode
-- **F**: Fullscreen mode
-- **S**: Speaker notes (if available)
+- **Escape**: Exit fullscreen (browser dependent)
+
+### Demo Mode
+- Click "Live Demo" button to switch to interactive demo
+- Click "Back to Presentation" to return to slides
 
 ## Presentation Structure
 
-The presentation is organized into the following sections:
+The presentation includes these sections:
 
-1. **Title Slide**: Introduction
-2. **WebSocket Overview**: Basic concepts and connection setup
-3. **Data Operations**: Deep dive into PARTIAL, INSERT, UPDATE, DELETE
-4. **Feed Types**: Different patterns of data streams
-5. **Implementation Example**: Complete code example
-6. **Best Practices**: Guidelines for production use
-7. **Q&A**: Discussion section
-
-## Key Features
-
-- **Interactive Code Examples**: Syntax-highlighted JavaScript and JSON
-- **Visual Data Flow**: Diagrams showing operation sequences
-- **Practical Implementation**: Real-world code patterns
-- **Responsive Design**: Works on desktop and mobile devices
+1. **Title Slide**: Introduction and overview
+2. **WebSocket Basics**: Connection setup and concepts
+3. **Operation Types**: Deep dive into PARTIAL, INSERT, UPDATE, DELETE
+4. **PARTIAL Fields**: Understanding message structure
+5. **Feed Patterns**: Different data stream types
+6. **Implementation**: Practical code examples
+7. **Best Practices**: Production guidelines
+8. **Conclusion**: Q&A and wrap-up
 
 ## Customization
 
-The presentation can be easily customized:
+### Adding New Slides
+Edit `src/App.jsx` and add new `<Slide>` components within the `<Deck>`:
 
-- **Themes**: Change the theme by modifying the CSS link in the `<head>` section
-- **Transitions**: Modify the `transition` setting in the JavaScript initialization
-- **Content**: Add or remove slides by editing the HTML structure
-- **Styling**: Custom CSS is included in the `<style>` section
+```jsx
+<Slide backgroundColor="tertiary">
+  <Heading color="primary" size={3}>Your Title</Heading>
+  <Text color="secondary">Your content</Text>
+</Slide>
+```
+
+### Styling
+- Theme colors are defined in the `theme` object in `src/App.jsx`
+- Custom styling can be added using Spectacle's built-in components
+- Styled Components are used for the Demo section
+
+### Code Examples
+Use Spectacle's `<CodePane>` component for syntax-highlighted code:
+
+```jsx
+<CodePane language="javascript" theme="dark" fontSize="14px">
+{`your code here`}
+</CodePane>
+```
+
+## File Structure
+
+```
+src/
+├── App.jsx              # Main application with Spectacle presentation
+├── App.css              # Global styles
+├── main.jsx             # React entry point
+└── components/
+    └── Demo.jsx          # Interactive demo component
+```
 
 ## Browser Compatibility
 
@@ -86,11 +133,29 @@ The presentation can be easily customized:
 - Safari: Full support
 - Mobile browsers: Responsive design included
 
-## Additional Resources
+## Development
 
-- [Reveal.js Documentation](https://revealjs.com/)
+### Adding Dependencies
+```bash
+npm install package-name
+```
+
+### Linting
+```bash
+npm run lint
+```
+
+### Building
+```bash
+npm run build
+```
+
+## Resources
+
+- [Spectacle Documentation](https://formidable.com/open-source/spectacle/)
+- [Vite Documentation](https://vitejs.dev/)
 - [BitMEX WebSocket API Documentation](https://www.bitmex.com/app/wsAPI)
-- [BitMEX REST API Documentation](https://www.bitmex.com/api/explorer/)
+- [React Documentation](https://react.dev/)
 
 ## License
 

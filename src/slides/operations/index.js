@@ -1,0 +1,6 @@
+export { default as OperationsOverviewSlide } from './OperationsOverviewSlide.jsx'
+export { default as PartialOperationSlide } from './PartialOperationSlide.jsx'
+export { default as PartialFieldsSlide } from './PartialFieldsSlide.jsx'
+export { default as InsertOperationSlide } from './InsertOperationSlide.jsx'
+export { default as UpdateOperationSlide } from './UpdateOperationSlide.jsx'
+export { default as DeleteOperationSlide } from './DeleteOperationSlide.jsx'
