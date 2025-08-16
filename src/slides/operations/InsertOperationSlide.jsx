@@ -13,7 +13,7 @@ export default function InsertOperationSlide() {
             <ListItem>Use keys to determine insertion point</ListItem>
           </UnorderedList>
           
-          <CodePane language="javascript" theme="dark" fontSize="14px" margin="20px 0">
+          <CodePane language="javascript" fontSize="14px" margin="20px 0">
 {`function handleInsert(table, data) {
     data.forEach(record => {
         if (table === 'execution') {
@@ -28,7 +28,7 @@ export default function InsertOperationSlide() {
         </Box>
         
         <Box>
-          <CodePane language="json" theme="dark" fontSize="12px">
+          <CodePane language="json" fontSize="12px">
 {`{
   "table": "execution",
   "action": "insert",

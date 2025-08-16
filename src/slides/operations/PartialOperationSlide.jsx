@@ -14,28 +14,21 @@ export default function PartialOperationSlide() {
           </UnorderedList>
         </Box>
         <Box>
-          <CodePane language="json" theme="dark" fontSize="12px">
+          <CodePane language="json" fontSize="10px">
 {`{
-  "table": "orderBookL2",
-  "action": "partial",
-  "keys": ["symbol", "id", "side"],
-  "types": {
-    "symbol": "symbol",
-    "id": "long", 
-    "side": "symbol",
-    "size": "long",
-    "price": "float"
-  },
-  "data": [
-    {
-      "symbol": "XBTUSD", 
-      "id": 8790000000, 
-      "side": "Sell", 
-      "size": 1000, 
-      "price": 50000
-    }
-  ]
-}`}
+      "table":"orderBookL2_25",
+      "keys":["symbol","id","side"],
+      "types":{"id":"long","price":"float","side":"symbol","size":"long","symbol":"symbol","timestamp":"timestamp"}
+      "action":"partial",
+      "data":[
+        {"symbol":"XBTUSD","id":17999992000,"side":"Sell","size":100,"price":80,"timestamp":"2022-02-09T11:23:06.802Z"},
+        {"symbol":"XBTUSD","id":17999993000,"side":"Sell","size":20,"price":70,"timestamp":"2022-02-09T11:23:06.802Z"},
+        {"symbol":"XBTUSD","id":17999994000,"side":"Sell","size":10,"price":60,"timestamp":"2022-02-09T11:23:06.802Z"},
+        {"symbol":"XBTUSD","id":17999995000,"side":"Buy","size":10,"price":50,"timestamp":"2022-02-09T11:23:06.802Z"},
+        {"symbol":"XBTUSD","id":17999996000,"side":"Buy","size":20,"price":40,"timestamp":"2022-02-09T11:23:06.802Z"},
+        {"symbol":"XBTUSD","id":17999997000,"side":"Buy","size":100,"price":30,"timestamp":"2022-02-09T11:23:06.802Z"}
+      ]
+    }`}
           </CodePane>
         </Box>
       </Grid>

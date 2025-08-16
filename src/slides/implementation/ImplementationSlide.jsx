@@ -16,7 +16,7 @@ export default function ImplementationSlide() {
         </Box>
         
         <Box>
-          <CodePane language="javascript" theme="dark" fontSize="11px">
+          <CodePane language="javascript" fontSize="11px">
 {`class BitMEXDataManager {
   constructor() {
     this.tables = new Map();

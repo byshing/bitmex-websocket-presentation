@@ -6,7 +6,7 @@ export default function ErrorHandlingSlide() {
     <Slide backgroundColor="primary">
       <Heading color="tertiary" size={3}>Error Handling & Edge Cases</Heading>
       <Box>
-        <CodePane language="javascript" theme="dark" fontSize="12px" margin="20px 0">
+        <CodePane language="javascript" fontSize="12px" margin="20px 0">
 {`class BitMEXWebSocket {
   handleMessage(message) {
     try {

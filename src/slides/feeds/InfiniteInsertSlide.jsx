@@ -1,5 +1,5 @@
 import React from 'react'
-import { Slide, Heading, Grid, Box, UnorderedList, ListItem, CodePane } from 'spectacle'
+import { Slide, Heading, Grid, Box, UnorderedList, ListItem, CodePane, codePaneThemes} from 'spectacle'
 
 export default function InfiniteInsertSlide() {
   return (
@@ -16,7 +16,7 @@ export default function InfiniteInsertSlide() {
         </Box>
         
         <Box>
-          <CodePane language="json" theme="dark" fontSize="12px">
+          <CodePane language="json" fontSize="12px">
 {`{
   "table": "trade",
   "action": "insert",

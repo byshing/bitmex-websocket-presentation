@@ -16,7 +16,7 @@ export default function OrderBookSlide() {
         </Box>
         
         <Box>
-          <CodePane language="json" theme="dark" fontSize="10px">
+          <CodePane language="json" fontSize="10px">
 {`// New price level
 {"table": "orderBookL2", "action": "insert",
  "data": [{"symbol": "XBTUSD", "id": 8799427500,

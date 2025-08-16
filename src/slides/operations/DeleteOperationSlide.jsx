@@ -10,19 +10,12 @@ export default function DeleteOperationSlide() {
           <UnorderedList color="secondary" fontSize="20px">
             <ListItem>Removes records by key</ListItem>
             <ListItem>Commonly for cancelled orders</ListItem>
-            <ListItem>Empty arrays mean clear all</ListItem>
           </UnorderedList>
           
-          <CodePane language="javascript" theme="dark" fontSize="14px" margin="20px 0">
+          <CodePane language="javascript" fontSize="14px" margin="20px 0">
 {`function handleDelete(table, data, keys) {
-    if (data.length === 0) {
-        // Empty array = clear all records
-        clearTable(table);
-        return;
-    }
-    
-    data.forEach(deleteData => {
-        const index = findIndexByKeys(table, deleteData, keys);
+    data.forEach(record => {
+        const key = getKey(table, record);
         if (index !== -1) {
             removeRecord(table, index);
         }
@@ -32,7 +25,7 @@ export default function DeleteOperationSlide() {
         </Box>
         
         <Box>
-          <CodePane language="json" theme="dark" fontSize="12px">
+          <CodePane language="json" fontSize="12px">
 {`{
   "table": "order",
   "action": "delete",
@@ -42,13 +35,6 @@ export default function DeleteOperationSlide() {
       "symbol": "XBTUSD"
     }
   ]
-}
-
-// Clear all orders
-{
-  "table": "order", 
-  "action": "delete",
-  "data": []
 }`}
           </CodePane>
         </Box>

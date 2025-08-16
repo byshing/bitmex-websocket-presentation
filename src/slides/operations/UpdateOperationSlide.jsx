@@ -13,7 +13,7 @@ export default function UpdateOperationSlide() {
             <ListItem>Common for positions, margins, order book</ListItem>
           </UnorderedList>
           
-          <CodePane language="javascript" theme="dark" fontSize="14px" margin="20px 0">
+          <CodePane language="javascript" fontSize="14px" margin="20px 0">
 {`function handleUpdate(table, data, keys) {
     data.forEach(updateData => {
         const existing = findRecordByKeys(table, updateData, keys);
@@ -30,7 +30,7 @@ export default function UpdateOperationSlide() {
         </Box>
         
         <Box>
-          <CodePane language="json" theme="dark" fontSize="12px">
+          <CodePane language="json" fontSize="12px">
 {`{
   "table": "position",
   "action": "update", 

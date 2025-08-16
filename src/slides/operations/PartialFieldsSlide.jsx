@@ -10,7 +10,7 @@ export default function PartialFieldsSlide() {
           <Box margin="20px 0">
             <Text color="primary" fontSize="20px" fontWeight="bold">keys</Text>
             <Text color="secondary" fontSize="16px">Unique identifiers for each record</Text>
-            <CodePane language="json" theme="dark" fontSize="14px">
+            <CodePane language="json" fontSize="14px">
               {`"keys": ["symbol", "id", "side"]`}
             </CodePane>
           </Box>
@@ -18,7 +18,7 @@ export default function PartialFieldsSlide() {
           <Box margin="20px 0">
             <Text color="primary" fontSize="20px" fontWeight="bold">types</Text>
             <Text color="secondary" fontSize="16px">Data type definitions</Text>
-            <CodePane language="json" theme="dark" fontSize="14px">
+            <CodePane language="json" fontSize="14px">
               {`"types": {"symbol": "symbol", "id": "long"}`}
             </CodePane>
           </Box>
@@ -28,7 +28,7 @@ export default function PartialFieldsSlide() {
           <Box margin="20px 0">
             <Text color="primary" fontSize="20px" fontWeight="bold">foreignKeys</Text>
             <Text color="secondary" fontSize="16px">References to other tables</Text>
-            <CodePane language="json" theme="dark" fontSize="14px">
+            <CodePane language="json" fontSize="14px">
               {`"foreignKeys": {"symbol": "instrument"}`}
             </CodePane>
           </Box>
@@ -36,7 +36,7 @@ export default function PartialFieldsSlide() {
           <Box margin="20px 0">
             <Text color="primary" fontSize="20px" fontWeight="bold">filter</Text>
             <Text color="secondary" fontSize="16px">Applied filters for this subscription</Text>
-            <CodePane language="json" theme="dark" fontSize="14px">
+            <CodePane language="json" fontSize="14px">
               {`"filter": {"symbol": "XBTUSD"}`}
             </CodePane>
           </Box>

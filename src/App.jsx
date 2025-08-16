@@ -5,6 +5,7 @@ import {
 } from 'spectacle'
 import Demo from './components/Demo'
 import './App.css'
+import './monokai.css'
 
 // Import all slides
 import {

@@ -16,7 +16,7 @@ export default function StateUpdateSlide() {
         </Box>
         
         <Box>
-          <CodePane language="json" theme="dark" fontSize="11px">
+          <CodePane language="json" fontSize="11px">
 {`// Initial state
 {
   "table": "position", 
