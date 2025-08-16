@@ -20,7 +20,7 @@ export default function InfiniteInsertSlide() {
           <UnorderedList color="secondary" fontSize="18px">
             <ListItem>Continuous stream of new records</ListItem>
             <ListItem>Never use UPDATE/DELETE</ListItem>
-            <ListItem>Examples: trades, liquidations</ListItem>
+            <ListItem>Examples: trades, execution, liquidations</ListItem>
             <ListItem>Manage memory with sliding windows</ListItem>
           </UnorderedList>
         </Box>

@@ -9,26 +9,9 @@ export default function UpdateOperationSlide() {
         <Box>
           <UnorderedList color="secondary" fontSize="20px">
             <ListItem>Updates existing records by key</ListItem>
-            <ListItem>Only modified fields are included</ListItem>
-            <ListItem>Common for positions, margins, order book</ListItem>
+            <ListItem>Normally only keys fields AND modified fields are included (with exception)</ListItem>
           </UnorderedList>
-          
-          <CodePane language="javascript" fontSize="14px" margin="20px 0">
-{`function handleUpdate(table, data, keys) {
-    data.forEach(updateData => {
-        const existing = findRecordByKeys(table, updateData, keys);
-        if (existing) {
-            Object.assign(existing, updateData);
-            
-            if (table === 'position') {
-                updatePositionDisplay(existing);
-            }
-        }
-    });
-}`}
-          </CodePane>
         </Box>
-        
         <Box>
           <CodePane language="json" fontSize="12px">
 {`{

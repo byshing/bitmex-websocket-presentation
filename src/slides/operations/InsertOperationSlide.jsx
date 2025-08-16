@@ -9,24 +9,8 @@ export default function InsertOperationSlide() {
         <Box>
           <UnorderedList color="secondary" fontSize="20px">
             <ListItem>Adds new records to the dataset</ListItem>
-            <ListItem>Common in execution feeds, new orders</ListItem>
-            <ListItem>Use keys to determine insertion point</ListItem>
           </UnorderedList>
-          
-          <CodePane language="javascript" fontSize="14px" margin="20px 0">
-{`function handleInsert(table, data) {
-    data.forEach(record => {
-        if (table === 'execution') {
-            executionHistory.push(record);
-            updateTradeStatistics(record);
-        } else if (table === 'orderBookL2') {
-            insertOrderBookLevel(record);
-        }
-    });
-}`}
-          </CodePane>
         </Box>
-        
         <Box>
           <CodePane language="json" fontSize="12px">
 {`{

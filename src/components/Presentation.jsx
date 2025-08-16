@@ -419,20 +419,6 @@ const InsertOperationSlide = () => (
             <OperationExample type="insert" />
           </Fade>
         </div>
-        <Fade delay={400}>
-          <CodeBlock language="javascript">
-{`function handleInsert(table, data) {
-    data.forEach(record => {
-        if (table === 'execution') {
-            executionHistory.push(record);
-            updateTradeStatistics(record);
-        } else if (table === 'orderBookL2') {
-            insertOrderBookLevel(record);
-        }
-    });
-}`}
-          </CodeBlock>
-        </Fade>
       </div>
     </Content>
   </SlideContainer>

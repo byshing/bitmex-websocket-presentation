@@ -9,19 +9,8 @@ export default function DeleteOperationSlide() {
         <Box>
           <UnorderedList color="secondary" fontSize="20px">
             <ListItem>Removes records by key</ListItem>
-            <ListItem>Commonly for cancelled orders</ListItem>
+            <ListItem>Mostly see in orderBook feeds</ListItem>
           </UnorderedList>
-          
-          <CodePane language="javascript" fontSize="14px" margin="20px 0">
-{`function handleDelete(table, data, keys) {
-    data.forEach(record => {
-        const key = getKey(table, record);
-        if (index !== -1) {
-            removeRecord(table, index);
-        }
-    });
-}`}
-          </CodePane>
         </Box>
         
         <Box>

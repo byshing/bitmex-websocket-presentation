@@ -1,38 +1,56 @@
-import React from 'react'
-import { Slide, Heading, Grid, Box, UnorderedList, ListItem, CodePane } from 'spectacle'
+import React from "react";
+import {
+  Slide,
+  Heading,
+  Grid,
+  Box,
+  UnorderedList,
+  ListItem,
+  CodePane,
+} from "spectacle";
 
 export default function OrderBookSlide() {
   return (
-    <Slide >
-      <Heading color="primary" size={3}>Order Book - Mixed Pattern</Heading>
+    <Slide>
+      <Heading color="primary" size={3}>
+        OrderBookL2, OrderBookL2_25 - Mixed Pattern
+      </Heading>
       <Grid gridTemplateColumns="1fr 1fr" gridGap="40px">
         <Box>
           <UnorderedList color="secondary" fontSize="18px">
             <ListItem>INSERT for new price levels</ListItem>
             <ListItem>UPDATE for size changes</ListItem>
-            <ListItem>DELETE when size = 0</ListItem>
-            <ListItem>Indexed by [symbol, id]</ListItem>
+            <ListItem>Indexed by [symbol, id, side]</ListItem>
           </UnorderedList>
         </Box>
-        
+
         <Box>
           <CodePane language="json" fontSize="10px">
-{`// New price level
+            {`// New price level
 {"table": "orderBookL2", "action": "insert",
- "data": [{"symbol": "XBTUSD", "id": 8799427500,
-           "side": "Buy", "size": 1000, "price": 42500}]}
+ "data": [{
+        "symbol": "AVAXUSDT", "id": 126295300416, "side": "Buy", // keys fields
+        "price": 24.096,
+        "size": 1000,
+        }]}
 
 // Size change  
 {"table": "orderBookL2", "action": "update",
- "data": [{"symbol": "XBTUSD", "id": 8799427500, 
-           "size": 1500}]}
+ "data": [{
+        "symbol": "AVAXUSDT", "id": 126295300416, "side": "Buy", // keys fields
+        "price": 24.096,
+        "size": 1500
+        }]}
 
 // Price level removed
 {"table": "orderBookL2", "action": "delete",
- "data": [{"symbol": "XBTUSD", "id": 8799427500}]}`}
+ "data": [{
+        "symbol": "AVAXUSDT", "id": 126295300416, "side": "Buy", // keys fields
+        "price": 24.096,
+        }]}`}
           </CodePane>
         </Box>
       </Grid>
     </Slide>
-  )
+  );
 }

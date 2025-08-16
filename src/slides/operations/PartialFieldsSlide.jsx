@@ -5,7 +5,7 @@ export default function PartialFieldsSlide() {
   return (
     <Slide backgroundColor="tertiary">
       <Heading color="primary" size={3}>
-        Understanding PARTIAL Fields
+        PARTIAL Fields:
       </Heading>
       <Grid gridTemplateColumns="1fr 1fr" gridGap="30px">
         <Box>
