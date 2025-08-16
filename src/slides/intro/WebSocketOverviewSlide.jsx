@@ -34,10 +34,10 @@ export default function WebSocketOverviewSlide() {
 const ws = new WebSocket('wss://ws.bitmex.com/realtime');
 
 ws.on('open', () => {
-    // Subscribe to data feeds
+    // Subscribe to orderBookL2_25 for XBTUSD
     ws.send(JSON.stringify({
         op: 'subscribe',
-        args: ['orderBookL2:XBTUSD', 'execution:XBTUSD']
+        args: ['orderBookL2_25:XBTUSD']
     }));
 });
 

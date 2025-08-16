@@ -32,14 +32,14 @@ export default function UpdateOperationSlide() {
         <Box>
           <CodePane language="json" fontSize="12px">
 {`{
-  "table": "position",
-  "action": "update", 
+  "table": "orderBookL2_25",
+  "action": "update",
   "data": [
     {
       "symbol": "XBTUSD",
-      "currentQty": 500,
-      "unrealisedPnl": 125000,
-      "timestamp": "2025-08-16T10:30:01.000Z"
+      "id": 17999995000,
+      "side": "Buy",
+      "size": 5
     }
   ]
 }`}

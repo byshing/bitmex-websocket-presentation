@@ -27,12 +27,13 @@ export default function DeleteOperationSlide() {
         <Box>
           <CodePane language="json" fontSize="12px">
 {`{
-  "table": "order",
+  "table": "orderBookL2_25",
   "action": "delete",
   "data": [
     {
-      "orderID": "abc123-def456-789",
-      "symbol": "XBTUSD"
+      "symbol": "XBTUSD",
+      "id": 17999995000,
+      "side": "Buy"
     }
   ]
 }`}

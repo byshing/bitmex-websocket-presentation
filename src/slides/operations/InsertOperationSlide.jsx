@@ -30,17 +30,15 @@ export default function InsertOperationSlide() {
         <Box>
           <CodePane language="json" fontSize="12px">
 {`{
-  "table": "execution",
+  "table": "orderBookL2_25",
   "action": "insert",
   "data": [
     {
-      "execID": "abc12345-def6-7890-ghij-klmn12345678",
       "symbol": "XBTUSD",
+      "id": 17999995500,
       "side": "Buy",
-      "lastQty": 100,
-      "lastPx": 50000,
-      "execType": "Trade",
-      "timestamp": "2025-08-16T10:30:00.000Z"
+      "size": 10,
+      "price": 45
     }
   ]
 }`}
