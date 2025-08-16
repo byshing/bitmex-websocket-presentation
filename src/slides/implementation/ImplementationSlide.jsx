@@ -1,23 +1,31 @@
-import React from 'react'
-import { Slide, Heading, Grid, Box, UnorderedList, ListItem, CodePane } from 'spectacle'
+import React from "react";
+import {
+  Slide,
+  Heading,
+  Grid,
+  Box,
+  UnorderedList,
+  ListItem,
+  CodePane,
+} from "spectacle";
 
 export default function ImplementationSlide() {
   return (
-    <Slide backgroundColor="primary">
-      <Heading color="tertiary" size={3}>Implementation Patterns</Heading>
+    <Slide>
+      <Heading>Implementation Patterns</Heading>
       <Grid gridTemplateColumns="1fr 1fr" gridGap="40px">
         <Box>
-          <UnorderedList color="tertiary" fontSize="20px">
+          <UnorderedList fontSize="20px">
             <ListItem>Router by table + action</ListItem>
             <ListItem>Separate handlers per feed type</ListItem>
             <ListItem>Key-based record management</ListItem>
             <ListItem>Memory management for infinite feeds</ListItem>
           </UnorderedList>
         </Box>
-        
+
         <Box>
           <CodePane language="javascript" fontSize="11px">
-{`class BitMEXDataManager {
+            {`class BitMEXDataManager {
   constructor() {
     this.tables = new Map();
     this.keys = {
@@ -40,5 +48,5 @@ export default function ImplementationSlide() {
         </Box>
       </Grid>
     </Slide>
-  )
+  );
 }

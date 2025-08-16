@@ -3,7 +3,7 @@ import { Slide, Heading, UnorderedList, ListItem, Box } from 'spectacle'
 
 export default function IntroductionSlide() {
   return (
-    <Slide backgroundColor="quaternary" className="slide-gradient-dark">
+    <Slide  className="slide-gradient-dark">
       <Box className="fade-in-up">
         <Heading 
           color="primary" 

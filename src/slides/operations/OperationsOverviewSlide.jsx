@@ -3,10 +3,10 @@ import { Slide, Heading, Grid, Box, UnorderedList, ListItem } from 'spectacle'
 
 export default function OperationsOverviewSlide() {
   return (
-    <Slide backgroundColor="secondary" className="slide-gradient-2">
+    <Slide className="slide-gradient-2">
       <Box className="fade-in-up">
         <Heading 
-          color="tertiary" 
+          
           size={2} 
           margin="0 0 60px 0"
           className="enhanced-heading"
@@ -29,7 +29,7 @@ export default function OperationsOverviewSlide() {
               }}
             >
               <UnorderedList 
-                color="tertiary" 
+                
                 fontSize="36px"
                 style={{
                   fontWeight: 600,
@@ -74,7 +74,7 @@ export default function OperationsOverviewSlide() {
               }}
             >
               <UnorderedList 
-                color="tertiary" 
+                
                 fontSize="36px"
                 style={{
                   fontWeight: 600,

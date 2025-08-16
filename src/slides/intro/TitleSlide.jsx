@@ -3,7 +3,7 @@ import { Slide, Heading, Text, Box } from 'spectacle'
 
 export default function TitleSlide() {
   return (
-    <Slide backgroundColor="tertiary" className="slide-gradient-dark">
+    <Slide >
       <Box textAlign="center" className="fade-in-up">
         <Heading 
           margin="0px" 

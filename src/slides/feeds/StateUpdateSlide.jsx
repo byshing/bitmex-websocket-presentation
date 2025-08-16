@@ -1,10 +1,20 @@
-import React from 'react'
-import { Slide, Heading, Grid, Box, UnorderedList, ListItem, CodePane } from 'spectacle'
+import React from "react";
+import {
+  Slide,
+  Heading,
+  Grid,
+  Box,
+  UnorderedList,
+  ListItem,
+  CodePane,
+} from "spectacle";
 
 export default function StateUpdateSlide() {
   return (
-    <Slide backgroundColor="quaternary">
-      <Heading color="primary" size={3}>State Update Feeds</Heading>
+    <Slide>
+      <Heading color="primary" size={3}>
+        State Update Feeds
+      </Heading>
       <Grid gridTemplateColumns="1fr 1fr" gridGap="40px">
         <Box>
           <UnorderedList color="secondary" fontSize="18px">
@@ -14,10 +24,10 @@ export default function StateUpdateSlide() {
             <ListItem>Perfect for reactive UIs</ListItem>
           </UnorderedList>
         </Box>
-        
+
         <Box>
           <CodePane language="json" fontSize="11px">
-{`// Initial state
+            {`// Initial state
 {
   "table": "position", 
   "action": "partial",
@@ -34,5 +44,5 @@ export default function StateUpdateSlide() {
         </Box>
       </Grid>
     </Slide>
-  )
+  );
 }

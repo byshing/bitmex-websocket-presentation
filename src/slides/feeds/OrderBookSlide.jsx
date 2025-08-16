@@ -3,7 +3,7 @@ import { Slide, Heading, Grid, Box, UnorderedList, ListItem, CodePane } from 'sp
 
 export default function OrderBookSlide() {
   return (
-    <Slide backgroundColor="quaternary">
+    <Slide >
       <Heading color="primary" size={3}>Order Book - Mixed Pattern</Heading>
       <Grid gridTemplateColumns="1fr 1fr" gridGap="40px">
         <Box>

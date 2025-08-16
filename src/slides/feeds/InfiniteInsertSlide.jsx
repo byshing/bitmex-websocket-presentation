@@ -1,10 +1,20 @@
-import React from 'react'
-import { Slide, Heading, Grid, Box, UnorderedList, ListItem, CodePane, codePaneThemes} from 'spectacle'
+import React from "react";
+import {
+  Slide,
+  Heading,
+  Grid,
+  Box,
+  UnorderedList,
+  ListItem,
+  CodePane,
+} from "spectacle";
 
 export default function InfiniteInsertSlide() {
   return (
-    <Slide backgroundColor="quaternary">
-      <Heading color="primary" size={3}>Infinite Insert Feeds</Heading>
+    <Slide>
+      <Heading color="primary" size={3}>
+        Infinite Insert Feeds
+      </Heading>
       <Grid gridTemplateColumns="1fr 1fr" gridGap="40px">
         <Box>
           <UnorderedList color="secondary" fontSize="18px">
@@ -14,10 +24,10 @@ export default function InfiniteInsertSlide() {
             <ListItem>Manage memory with sliding windows</ListItem>
           </UnorderedList>
         </Box>
-        
+
         <Box>
           <CodePane language="json" fontSize="12px">
-{`{
+            {`{
   "table": "trade",
   "action": "insert",
   "data": [
@@ -35,5 +45,5 @@ export default function InfiniteInsertSlide() {
         </Box>
       </Grid>
     </Slide>
-  )
+  );
 }

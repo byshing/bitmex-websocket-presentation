@@ -3,7 +3,7 @@ import { Slide, Heading, CodePane, Box } from 'spectacle'
 
 export default function WebSocketOverviewSlide() {
   return (
-    <Slide backgroundColor="quaternary" className="slide-gradient-dark">
+    <Slide  className="slide-gradient-dark">
       <Box className="fade-in-up">
         <Heading 
           color="primary" 
