@@ -94,43 +94,7 @@ export default function KeyTakeawaysSlide() {
             >
               📊 Feed patterns dictate data management
             </ListItem>
-            <ListItem
-              className="slide-in-left"
-              style={{
-                padding: "20px",
-                margin: "20px 0",
-                background: "rgba(138, 43, 226, 0.2)",
-                borderRadius: "12px",
-                border: "2px solid rgba(138, 43, 226, 0.4)",
-                boxShadow: "0 4px 16px rgba(138, 43, 226, 0.2)",
-                animationDelay: "0.5s",
-                fontWeight: 600,
-              }}
-            >
-              🛡️ Proper error handling ensures reliability
-            </ListItem>
           </UnorderedList>
-        </Box>
-        <Box
-          margin="60px 0 0"
-          style={{
-            textAlign: "center",
-            padding: "20px",
-            background: "rgba(255, 255, 255, 0.1)",
-            borderRadius: "12px",
-            border: "1px solid rgba(255, 255, 255, 0.2)",
-          }}
-        >
-          <span
-            style={{
-              color: "#0a0a0a",
-              fontSize: "24px",
-              fontWeight: 600,
-            }}
-          >
-            🚀 Master these concepts for effective real-time trading
-            applications!
-          </span>
         </Box>
       </Box>
     </Slide>

@@ -13,7 +13,7 @@ const DemoContainer = styled.div`
 
 const Title = styled.h1`
   text-align: center;
-  color: #ffd700;
+  color: #232099;
   margin-bottom: 20px;
 `
 
@@ -73,7 +73,7 @@ const Panel = styled.div`
 `
 
 const PanelTitle = styled.h3`
-  color: #ffd700;
+  color: #232099;
   margin-top: 0;
   border-bottom: 1px solid #444;
   padding-bottom: 10px;
@@ -104,7 +104,7 @@ const StatsContainer = styled.div`
   }
 
   .label {
-    color: #ffd700;
+    color: #232099;
   }
 
   .value {
@@ -136,7 +136,7 @@ const ConfigSection = styled.div`
 `
 
 const ConfigTitle = styled.h3`
-  color: #ffd700;
+  color: #232099;
   margin-top: 0;
   margin-bottom: 20px;
 `
@@ -147,7 +147,7 @@ const FormGroup = styled.div`
 
 const Label = styled.label`
   display: block;
-  color: #ffd700;
+  color: #232099;
   margin-bottom: 5px;
   font-weight: bold;
 `
@@ -162,7 +162,7 @@ const Input = styled.input`
   font-size: 14px;
 
   &:focus {
-    border-color: #ffd700;
+    border-color: #232099;
     outline: none;
   }
 
@@ -183,7 +183,7 @@ const TextArea = styled.textarea`
   resize: vertical;
 
   &:focus {
-    border-color: #ffd700;
+    border-color: #232099;
     outline: none;
   }
 
@@ -206,7 +206,7 @@ const CheckboxLabel = styled.label`
   
   input[type="checkbox"] {
     margin-right: 8px;
-    accent-color: #ffd700;
+    accent-color: #232099;
   }
 `
 
@@ -220,7 +220,7 @@ const EnvironmentSelect = styled.select`
   font-size: 14px;
 
   &:focus {
-    border-color: #ffd700;
+    border-color: #232099;
     outline: none;
   }
 
@@ -236,7 +236,7 @@ const EnvironmentInfo = styled.div`
   border: 1px solid rgba(255, 215, 0, 0.3);
   border-radius: 4px;
   font-size: 12px;
-  color: #ffd700;
+  color: #232099;
   margin-top: 5px;
 `
 

@@ -13,7 +13,7 @@ const DiagramContainer = styled.div`
 
 const DataBox = styled.div`
   background: ${props => props.color || 'rgba(255, 215, 0, 0.1)'};
-  border: 2px solid ${props => props.borderColor || '#ffd700'};
+  border: 2px solid ${props => props.borderColor || '#232099'};
   border-radius: 15px;
   padding: 25px;
   min-width: 180px;
@@ -27,7 +27,7 @@ const DataBox = styled.div`
   }
 
   h4 {
-    color: ${props => props.borderColor || '#ffd700'};
+    color: ${props => props.borderColor || '#232099'};
     margin: 0 0 10px 0;
     font-size: 1.3em;
   }
@@ -45,7 +45,7 @@ const DataBox = styled.div`
 
 const Arrow = styled.div`
   font-size: 2.5em;
-  color: #ffd700;
+  color: #232099;
   animation: pulse 2s infinite;
 
   @keyframes pulse {

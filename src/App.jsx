@@ -43,9 +43,9 @@ import {
 // Custom theme
 const theme = {
   colors: {
-    primary: '#ffd700',
-    secondary: '#ffffff',
-    tertiary: '#1a1a1a',
+    primary: '#232099',
+    secondary: '#232099',
+    tertiary: '#ffffff',
     quaternary: '#2d2d2d'
   },
   fonts: {
@@ -70,7 +70,7 @@ function App() {
           <button 
             onClick={() => setCurrentView('presentation')}
             style={{
-              background: '#ffd700',
+              background: '#232099',
               color: '#000',
               border: 'none',
               padding: '10px 20px',
@@ -100,7 +100,7 @@ function App() {
         <button 
           onClick={() => setCurrentView('demo')}
           style={{
-            background: '#ffd700',
+            background: '#232099',
             color: '#000',
             border: 'none',
             padding: '10px 20px',

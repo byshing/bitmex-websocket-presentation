@@ -27,7 +27,7 @@ const SlideContainer = styled.div`
 const Title = styled.h1`
   font-size: 3.5em;
   margin-bottom: 0.5em;
-  background: linear-gradient(45deg, #ffd700, #ffed4e);
+  background: linear-gradient(45deg, #232099, #ffed4e);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
@@ -36,13 +36,13 @@ const Title = styled.h1`
 const Subtitle = styled.h2`
   font-size: 2.5em;
   margin-bottom: 1em;
-  color: #ffd700;
+  color: #232099;
 `
 
 const SectionTitle = styled.h3`
   font-size: 2em;
   margin-bottom: 1em;
-  color: #ffd700;
+  color: #232099;
   text-align: left;
   width: 100%;
 `
@@ -64,7 +64,7 @@ const BulletPoint = styled.li`
     content: '▶';
     position: absolute;
     left: 0;
-    color: #ffd700;
+    color: #232099;
     font-size: 0.8em;
     top: 0.1em;
   }
@@ -93,7 +93,7 @@ const NavButton = styled.button`
 
   &:hover {
     background: rgba(255, 215, 0, 0.2);
-    border-color: #ffd700;
+    border-color: #232099;
     transform: translateY(-2px);
   }
 
@@ -371,29 +371,29 @@ const PartialFieldsSlide = () => (
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
         <Slide direction="left" cascade damping={0.1}>
           <div style={{ marginBottom: '20px' }}>
-            <strong style={{ color: '#ffd700' }}>keys</strong>: Unique identifiers
+            <strong style={{ color: '#232099' }}>keys</strong>: Unique identifiers
             <CodeBlock language="json" small>{"\"keys\": [\"symbol\", \"id\", \"side\"]"}</CodeBlock>
           </div>
           
           <div style={{ marginBottom: '20px' }}>
-            <strong style={{ color: '#ffd700' }}>types</strong>: Data type definitions
+            <strong style={{ color: '#232099' }}>types</strong>: Data type definitions
             <CodeBlock language="json" small>{"\"types\": {\"symbol\": \"symbol\", \"id\": \"long\"}"}</CodeBlock>
           </div>
           
           <div style={{ marginBottom: '20px' }}>
-            <strong style={{ color: '#ffd700' }}>foreignKeys</strong>: References to other tables
+            <strong style={{ color: '#232099' }}>foreignKeys</strong>: References to other tables
             <CodeBlock language="json" small>{"\"foreignKeys\": {\"symbol\": \"instrument\"}"}</CodeBlock>
           </div>
         </Slide>
         
         <Slide direction="right" cascade damping={0.1}>
           <div style={{ marginBottom: '20px' }}>
-            <strong style={{ color: '#ffd700' }}>attributes</strong>: Special properties
+            <strong style={{ color: '#232099' }}>attributes</strong>: Special properties
             <CodeBlock language="json" small>{"\"attributes\": {\"symbol\": \"grouped\"}"}</CodeBlock>
           </div>
           
           <div style={{ marginBottom: '20px' }}>
-            <strong style={{ color: '#ffd700' }}>filter</strong>: Applied filters
+            <strong style={{ color: '#232099' }}>filter</strong>: Applied filters
             <CodeBlock language="json" small>{"\"filter\": {\"symbol\": \"XBTUSD\"}"}</CodeBlock>
           </div>
         </Slide>
@@ -506,9 +506,9 @@ const FeedTypesSlide = () => (
     <Content>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '30px', marginTop: '40px' }}>
         <Slide direction="up" cascade damping={0.2}>
-          <div style={{ background: 'rgba(255, 215, 0, 0.1)', border: '2px solid #ffd700', borderRadius: '15px', padding: '30px', textAlign: 'center' }}>
+          <div style={{ background: 'rgba(255, 215, 0, 0.1)', border: '2px solid #232099', borderRadius: '15px', padding: '30px', textAlign: 'center' }}>
             <div style={{ fontSize: '3em', marginBottom: '10px' }}>📈</div>
-            <h4 style={{ color: '#ffd700', marginBottom: '10px' }}>Infinite Insert</h4>
+            <h4 style={{ color: '#232099', marginBottom: '10px' }}>Infinite Insert</h4>
             <p>Execution, Trade</p>
             <small>Continuous new records</small>
           </div>
@@ -538,7 +538,7 @@ const InfiniteInsertSlide = () => (
     <Content>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px' }}>
         <div>
-          <h4 style={{ color: '#ffd700', marginBottom: '20px' }}>Characteristics:</h4>
+          <h4 style={{ color: '#232099', marginBottom: '20px' }}>Characteristics:</h4>
           <ul style={{ listStyle: 'none', padding: 0 }}>
             <Slide direction="left" cascade damping={0.2}>
               <BulletPoint>Primarily INSERT operations</BulletPoint>
@@ -582,7 +582,7 @@ const StateUpdateSlide = () => (
     <Content>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px' }}>
         <div>
-          <h4 style={{ color: '#ffd700', marginBottom: '20px' }}>Characteristics:</h4>
+          <h4 style={{ color: '#232099', marginBottom: '20px' }}>Characteristics:</h4>
           <ul style={{ listStyle: 'none', padding: 0 }}>
             <Slide direction="left" cascade damping={0.2}>
               <BulletPoint>Few records (often just 1-3 per symbol)</BulletPoint>
@@ -632,7 +632,7 @@ const OrderBookSlide = () => (
     <Content>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px' }}>
         <div>
-          <h4 style={{ color: '#ffd700', marginBottom: '20px' }}>Characteristics:</h4>
+          <h4 style={{ color: '#232099', marginBottom: '20px' }}>Characteristics:</h4>
           <ul style={{ listStyle: 'none', padding: 0 }}>
             <Slide direction="left" cascade damping={0.2}>
               <BulletPoint>Mixed operations: INSERT, UPDATE, DELETE</BulletPoint>
@@ -741,7 +741,7 @@ const ConclusionSlide = () => (
     </Zoom>
     <Fade delay={300}>
       <div style={{ textAlign: 'center', marginTop: '50px' }}>
-        <h3 style={{ color: '#ffd700' }}>Thank you!</h3>
+        <h3 style={{ color: '#232099' }}>Thank you!</h3>
         <p style={{ fontSize: '1.2em', opacity: 0.8 }}>BitMEX WebSocket Data & State Management</p>
       </div>
     </Fade>

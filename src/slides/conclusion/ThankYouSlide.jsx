@@ -101,30 +101,6 @@ export default function ThankYouSlide() {
           >
             ✅ Live Demo Available
           </Box>
-          <Box
-            style={{
-              padding: "15px 25px",
-              background: "rgba(0, 212, 255, 0.1)",
-              border: "1px solid rgba(0, 212, 255, 0.3)",
-              borderRadius: "25px",
-              color: "#00d4ff",
-              fontWeight: 600,
-            }}
-          >
-            🔗 Real WebSocket Connection
-          </Box>
-          <Box
-            style={{
-              padding: "15px 25px",
-              background: "rgba(255, 107, 0, 0.1)",
-              border: "1px solid rgba(255, 107, 0, 0.3)",
-              borderRadius: "25px",
-              color: "#ff6b00",
-              fontWeight: 600,
-            }}
-          >
-            📈 Trading Ready
-          </Box>
         </Box>
       </Box>
     </Slide>

@@ -18,7 +18,7 @@ const CodeHeader = styled.div`
   padding: 10px 20px;
   border-bottom: 1px solid #444;
   font-size: 0.9em;
-  color: #ffd700;
+  color: #232099;
   font-weight: bold;
 `
 
