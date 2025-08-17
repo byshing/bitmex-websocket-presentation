@@ -5,31 +5,46 @@ import CryptoJS from 'crypto-js'
 const DemoContainer = styled.div`
   width: 100%;
   min-height: 100vh;
-  background: #1a1a1a;
-  color: white;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  color: #e2e8f0;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 80px 20px 20px;
 `
 
 const Title = styled.h1`
   text-align: center;
-  color: #232099;
+  color: #3b82f6;
   margin-bottom: 20px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
 `
 
 const Description = styled.p`
   text-align: center;
   margin-bottom: 40px;
-  opacity: 0.8;
+  color: #94a3b8;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 `
 
 const StatusContainer = styled.div`
   text-align: center;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 12px;
   margin-bottom: 40px;
-  background: ${props => props.connected ? '#0f5132' : '#721c24'};
-  border: 1px solid ${props => props.connected ? '#198754' : '#f85149'};
+  background: ${props => props.connected 
+    ? 'linear-gradient(135deg, #065f46 0%, #047857 100%)' 
+    : 'linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%)'};
+  border: 2px solid ${props => props.connected ? '#10b981' : '#ef4444'};
+  box-shadow: 0 4px 16px ${props => props.connected 
+    ? 'rgba(16, 185, 129, 0.3)' 
+    : 'rgba(239, 68, 68, 0.3)'};
+  color: white;
+  font-weight: 600;
 `
 
 const ControlsContainer = styled.div`
@@ -38,22 +53,30 @@ const ControlsContainer = styled.div`
 `
 
 const Button = styled.button`
-  background: #0d6efd;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   color: white;
   border: none;
-  padding: 12px 24px;
-  border-radius: 4px;
+  padding: 14px 28px;
+  border-radius: 8px;
   cursor: pointer;
   margin: 0 10px;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 
   &:hover {
-    background: #0b5ed7;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
   }
 
   &:disabled {
-    background: #6c757d;
+    background: linear-gradient(135deg, #64748b 0%, #475569 100%);
     cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.6;
   }
 `
 
@@ -66,50 +89,66 @@ const Grid = styled.div`
 `
 
 const Panel = styled.div`
-  background: #2d2d2d;
-  border: 1px solid #444;
-  border-radius: 8px;
-  padding: 20px;
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border: 1px solid #475569;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
 `
 
 const PanelTitle = styled.h3`
-  color: #232099;
+  color: #60a5fa;
   margin-top: 0;
-  border-bottom: 1px solid #444;
-  padding-bottom: 10px;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 12px;
+  font-size: 1.25rem;
+  font-weight: 600;
 `
 
 const LogContainer = styled.div`
-  background: #000;
-  color: #00ff00;
-  padding: 15px;
-  border-radius: 4px;
-  height: 200px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #22d3ee;
+  padding: 16px;
+  border-radius: 8px;
+  height: 240px;
   overflow-y: auto;
-  font-family: 'Courier New', monospace;
-  font-size: 12px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.4;
   white-space: pre-wrap;
+  border: 1px solid #334155;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
 `
 
 const StatsContainer = styled.div`
   .metric {
     display: flex;
     justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid #444;
+    padding: 12px 0;
+    border-bottom: 1px solid #475569;
+    transition: all 0.2s ease;
   }
 
   .metric:last-child {
     border-bottom: none;
   }
 
+  .metric:hover {
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 6px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
   .label {
-    color: #232099;
+    color: #94a3b8;
+    font-weight: 500;
   }
 
   .value {
-    color: #ffffff;
-    font-weight: bold;
+    color: #f1f5f9;
+    font-weight: 600;
   }
 `
 
@@ -125,128 +164,154 @@ const CodeBlock = styled.div`
 `
 
 const ConfigSection = styled.div`
-  background: #2d2d2d;
-  border: 1px solid #444;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
-  max-width: 800px;
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border: 1px solid #475569;
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 24px;
+  max-width: 900px;
   margin-left: auto;
   margin-right: auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 `
 
 const ConfigTitle = styled.h3`
-  color: #232099;
+  color: #60a5fa;
   margin-top: 0;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  font-size: 1.5rem;
+  font-weight: 600;
 `
 
 const FormGroup = styled.div`
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 `
 
 const Label = styled.label`
   display: block;
-  color: #232099;
-  margin-bottom: 5px;
-  font-weight: bold;
+  color: #94a3b8;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 14px;
 `
 
 const Input = styled.input`
   width: 100%;
-  padding: 8px 12px;
-  background: #1a1a1a;
-  border: 1px solid #444;
-  border-radius: 4px;
-  color: white;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border: 2px solid #475569;
+  border-radius: 8px;
+  color: #f1f5f9;
   font-size: 14px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
 
   &:focus {
-    border-color: #232099;
+    border-color: #3b82f6;
     outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   }
 
   &::placeholder {
-    color: #888;
+    color: #64748b;
   }
 `
 
 const TextArea = styled.textarea`
   width: 100%;
-  padding: 8px 12px;
-  background: #1a1a1a;
-  border: 1px solid #444;
-  border-radius: 4px;
-  color: white;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border: 2px solid #475569;
+  border-radius: 8px;
+  color: #f1f5f9;
   font-size: 14px;
-  min-height: 100px;
+  min-height: 120px;
   resize: vertical;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
 
   &:focus {
-    border-color: #232099;
+    border-color: #3b82f6;
     outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   }
 
   &::placeholder {
-    color: #888;
+    color: #64748b;
   }
 `
 
 const CheckboxGroup = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 16px;
 `
 
 const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
-  color: white;
+  color: #e2e8f0;
   cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: rgba(59, 130, 246, 0.1);
+  }
   
   input[type="checkbox"] {
-    margin-right: 8px;
-    accent-color: #232099;
+    margin-right: 10px;
+    accent-color: #3b82f6;
+    width: 16px;
+    height: 16px;
   }
 `
 
 const EnvironmentSelect = styled.select`
   width: 100%;
-  padding: 8px 12px;
-  background: #1a1a1a;
-  border: 1px solid #444;
-  border-radius: 4px;
-  color: white;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border: 2px solid #475569;
+  border-radius: 8px;
+  color: #f1f5f9;
   font-size: 14px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
 
   &:focus {
-    border-color: #232099;
+    border-color: #3b82f6;
     outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   }
 
   option {
-    background: #1a1a1a;
-    color: white;
+    background: #1e293b;
+    color: #f1f5f9;
+    padding: 8px;
   }
 `
 
 const EnvironmentInfo = styled.div`
-  padding: 8px 12px;
-  background: rgba(255, 215, 0, 0.1);
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  border-radius: 4px;
-  font-size: 12px;
-  color: #232099;
-  margin-top: 5px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.1) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 8px;
+  font-size: 13px;
+  color: #93c5fd;
+  margin-top: 8px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
 `
 
 const ErrorMessage = styled.div`
-  background: #721c24;
-  border: 1px solid #f85149;
-  color: #f85149;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 20px;
+  background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+  border: 2px solid #ef4444;
+  color: #fecaca;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
 `
 
 function Demo() {
