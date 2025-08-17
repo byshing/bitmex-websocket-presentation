@@ -231,6 +231,36 @@ const ToggleButton = styled.button`
   }
 `
 
+const EnvironmentSelect = styled.select`
+  width: 100%;
+  padding: 8px 12px;
+  background: #1a1a1a;
+  border: 1px solid #444;
+  border-radius: 4px;
+  color: white;
+  font-size: 14px;
+
+  &:focus {
+    border-color: #ffd700;
+    outline: none;
+  }
+
+  option {
+    background: #1a1a1a;
+    color: white;
+  }
+`
+
+const EnvironmentInfo = styled.div`
+  padding: 8px 12px;
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 4px;
+  font-size: 12px;
+  color: #ffd700;
+  margin-top: 5px;
+`
+
 const ErrorMessage = styled.div`
   background: #721c24;
   border: 1px solid #f85149;
@@ -242,6 +272,7 @@ const ErrorMessage = styled.div`
 
 function Demo() {
   const [mode, setMode] = useState('simulation') // 'simulation' or 'live'
+  const [environment, setEnvironment] = useState('testnet') // 'devhk', 'testnet', 'prod'
   const [isConnected, setIsConnected] = useState(false)
   const [logs, setLogs] = useState('')
   const [messageCount, setMessageCount] = useState(0)
@@ -264,6 +295,25 @@ function Demo() {
   })
   
   const wsRef = useRef(null)
+
+  // Environment configurations
+  const environments = {
+    devhk: { 
+      name: 'DevHK', 
+      url: 'wss://ws.devhk.bitmex.com/realtime',
+      description: 'Development (Hong Kong)'
+    },
+    testnet: { 
+      name: 'Testnet', 
+      url: 'wss://ws.testnet.bitmex.com/realtime',
+      description: 'Test Environment'
+    },
+    prod: { 
+      name: 'Production', 
+      url: 'wss://ws.bitmex.com/realtime',
+      description: 'Live Trading'
+    }
+  }
 
   const availableFeeds = [
     { key: 'orderBookL2:XBTUSD', label: 'Order Book (XBTUSD)', public: true },
@@ -314,28 +364,31 @@ function Demo() {
     }
 
     try {
-      const wsUrl = 'wss://ws.bitmex.com/realtime'
+      let wsUrl = environments[environment].url
+      
+      // Add authentication parameters to URL if needed
+      if (needsAuth && apiKey && apiSecret) {
+        const expires = Math.round(new Date().getTime() / 1000) + 60
+        const signature = generateAuthSignature('GET', '/realtime', expires)
+        
+        const authParams = new URLSearchParams({
+          'api-expires': expires.toString(),
+          'api-signature': signature,
+          'api-key': apiKey
+        })
+        
+        wsUrl += '?' + authParams.toString()
+        log('Using URL-based authentication for WebSocket')
+      }
+      
       wsRef.current = new WebSocket(wsUrl)
       
       wsRef.current.onopen = () => {
-        log('Connected to BitMEX WebSocket')
+        log(`Connected to BitMEX WebSocket (${environments[environment].name})`)
         setIsConnected(true)
         
-        // Authenticate if needed
-        if (needsAuth) {
-          const expires = Math.round(new Date().getTime() / 1000) + 60
-          const signature = generateAuthSignature('GET', '/realtime', expires)
-          
-          const authMessage = {
-            op: 'authKeyExpires',
-            args: [apiKey, expires, signature]
-          }
-          
-          wsRef.current.send(JSON.stringify(authMessage))
-          log('Sent authentication request')
-        }
-        
-        // Subscribe to feeds
+        // No need for separate auth message when using URL params
+        // Subscribe to feeds directly
         const subscribeMessage = {
           op: 'subscribe',
           args: selectedFeedsList
@@ -355,9 +408,9 @@ function Demo() {
             return
           }
           
-          // Handle authentication
-          if (data.success && data.request && data.request.op === 'authKeyExpires') {
-            log('✓ Authenticated successfully')
+          // Handle info messages
+          if (data.info) {
+            log(`ℹ️ Info: ${data.info}`)
             return
           }
           
@@ -486,6 +539,23 @@ function Demo() {
         {mode === 'live' && (
           <>
             <FormGroup>
+              <Label>Environment</Label>
+              <EnvironmentSelect
+                value={environment}
+                onChange={(e) => setEnvironment(e.target.value)}
+              >
+                {Object.entries(environments).map(([key, env]) => (
+                  <option key={key} value={key}>
+                    {env.name} - {env.description}
+                  </option>
+                ))}
+              </EnvironmentSelect>
+              <EnvironmentInfo>
+                URL: {environments[environment].url}
+              </EnvironmentInfo>
+            </FormGroup>
+
+            <FormGroup>
               <Label>API Key (optional - for private feeds)</Label>
               <Input
                 type="text"
@@ -569,7 +639,7 @@ function Demo() {
             </div>
             <div className="metric">
               <span className="label">Mode:</span>
-              <span className="value">{mode === 'live' ? 'Live' : 'Simulation'}</span>
+              <span className="value">{mode === 'live' ? `Live (${environments[environment].name})` : 'Simulation'}</span>
             </div>
             <div className="metric">
               <span className="label">Last Update:</span>

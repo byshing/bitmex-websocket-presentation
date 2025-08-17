@@ -9,6 +9,14 @@ class BitMEXWebSocketManager {
         this.tables = new Map();
         this.tableConfigs = new Map();
         this.eventListeners = new Map();
+        this.currentEnvironment = 'testnet'; // Default to testnet for safety
+        
+        // Environment configurations
+        this.environments = {
+            devhk: 'wss://ws.devhk.bitmex.com/realtime',
+            testnet: 'wss://ws.testnet.bitmex.com/realtime',
+            prod: 'wss://ws.bitmex.com/realtime'
+        };
         
         // Initialize table data stores
         this.initializeDataStores();
@@ -24,33 +32,90 @@ class BitMEXWebSocketManager {
         });
     }
 
-    connect(apiKey = null, apiSecret = null) {
-        const url = 'wss://ws.bitmex.com/realtime';
+    setEnvironment(environment) {
+        if (!this.environments[environment]) {
+            throw new Error(`Invalid environment: ${environment}. Valid options: ${Object.keys(this.environments).join(', ')}`);
+        }
+        this.currentEnvironment = environment;
+        console.log(`Environment set to: ${environment}`);
+    }
+
+    getEnvironmentUrl() {
+        return this.environments[this.currentEnvironment];
+    }
+
+    getCurrentEnvironment() {
+        return this.currentEnvironment;
+    }
+
+    getAvailableEnvironments() {
+        return Object.keys(this.environments);
+    }
+
+    connect(apiKey = null, apiSecret = null, environment = null) {
+        // Set environment if provided
+        if (environment) {
+            this.setEnvironment(environment);
+        }
+        
+        let url = this.getEnvironmentUrl();
+        console.log(`Connecting to ${this.currentEnvironment}: ${url}`);
+        
+        // Add authentication parameters to URL if credentials provided
+        if (apiKey && apiSecret) {
+            const expires = Math.round(new Date().getTime() / 1000) + 60;
+            const signature = this.generateSignature(apiSecret, 'GET', '/realtime', expires);
+            
+            const authParams = new URLSearchParams({
+                'api-expires': expires.toString(),
+                'api-signature': signature,
+                'api-key': apiKey
+            });
+            
+            url += '?' + authParams.toString();
+            console.log('Using URL-based authentication');
+        }
+        
         this.ws = new WebSocket(url);
         
-        this.ws.on('open', () => {
-            console.log('Connected to BitMEX WebSocket');
-            this.emit('connected');
-        });
+        this.ws.onopen = () => {
+            console.log(`Connected to BitMEX WebSocket (${this.currentEnvironment})`);
+            this.emit('connected', { environment: this.currentEnvironment });
+        };
         
-        this.ws.on('message', (data) => {
+        this.ws.onmessage = (event) => {
             try {
-                const message = JSON.parse(data);
+                const message = JSON.parse(event.data);
                 this.handleMessage(message);
             } catch (error) {
                 console.error('Error parsing message:', error);
             }
-        });
+        };
         
-        this.ws.on('close', () => {
-            console.log('Disconnected from BitMEX WebSocket');
+        this.ws.onclose = () => {
+            console.log(`Disconnected from BitMEX WebSocket (${this.currentEnvironment})`);
             this.emit('disconnected');
-        });
+        };
         
-        this.ws.on('error', (error) => {
+        this.ws.onerror = (error) => {
             console.error('WebSocket error:', error);
             this.emit('error', error);
-        });
+        };
+    }
+
+    generateSignature(secret, verb, url, expires, data = '') {
+        // For browser environment, we'll need a crypto library
+        // This is a placeholder - in real implementation you'd use crypto-js or similar
+        if (typeof require !== 'undefined') {
+            const crypto = require('crypto');
+            const message = verb + url + expires + data;
+            return crypto.createHmac('sha256', secret).update(message).digest('hex');
+        } else if (typeof CryptoJS !== 'undefined') {
+            // For browser with crypto-js
+            const message = verb + url + expires + data;
+            return CryptoJS.HmacSHA256(message, secret).toString();
+        }
+        return 'browser-signature-placeholder';
     }
 
     subscribe(feeds) {
@@ -328,12 +393,12 @@ class BitMEXWebSocketManager {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = BitMEXWebSocketManager;
 } else {
-    // Browser usage example
+    // Browser usage example with environment selection
     const wsManager = new BitMEXWebSocketManager();
     
     // Set up event listeners
-    wsManager.on('connected', () => {
-        console.log('WebSocket connected!');
+    wsManager.on('connected', (data) => {
+        console.log(`WebSocket connected to ${data.environment}!`);
         
         // Subscribe to feeds
         wsManager.subscribe([
@@ -344,7 +409,7 @@ if (typeof module !== 'undefined' && module.exports) {
         ]);
     });
     
-    wsManager.on('position:change', (positions) => {
+    wsManager.on('position:change', () => {
         console.log('Positions updated:', wsManager.getPositions());
     });
     
@@ -362,6 +427,7 @@ if (typeof module !== 'undefined' && module.exports) {
         }
     });
     
-    // Connect
-    wsManager.connect();
+    // Connect to specific environment (default: testnet)
+    // wsManager.connect(null, null, 'testnet'); // For public data
+    // wsManager.connect(apiKey, apiSecret, 'prod'); // For authenticated data on production
 }
