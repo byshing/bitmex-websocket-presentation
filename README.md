@@ -2,6 +2,26 @@
 
 An interactive presentation built with React and Spectacle covering BitMEX WebSocket data types, operations, and state management strategies.
 
+## 🚀 Live Demo
+
+**View the presentation at:** https://byshing.github.io/bitmex-websocket-presentation
+
+
+## 📋 Deployment to GitHub Pages
+
+### Quick Setup:
+
+1. **Deploy**
+   - Push to the `main` branch - GitHub Actions will automatically build and deploy
+   - Or run `npm run deploy` for manual deployment
+
+### Manual Deployment
+```bash
+# Build and deploy manually
+npm run build
+npm run deploy
+```
+
 ## Overview
 
 This presentation covers:
