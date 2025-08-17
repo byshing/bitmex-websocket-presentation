@@ -10,6 +10,7 @@ export default function DeleteOperationSlide() {
           <UnorderedList color="secondary" fontSize="20px">
             <ListItem>Removes records by key</ListItem>
             <ListItem>Mostly see in orderBook feeds</ListItem>
+            <ListItem>Extra information may be included but should be ignored</ListItem>
           </UnorderedList>
         </Box>
         

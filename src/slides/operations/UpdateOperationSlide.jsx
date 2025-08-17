@@ -10,6 +10,8 @@ export default function UpdateOperationSlide() {
           <UnorderedList color="secondary" fontSize="20px">
             <ListItem>Updates existing records by key</ListItem>
             <ListItem>Normally only keys fields AND modified fields are included (with exception)</ListItem>
+            <ListItem>Partial updates are allowed</ListItem>
+            <ListItem>`data` may include multiple update to the same record (not guaranteed)</ListItem>
           </UnorderedList>
         </Box>
         <Box>

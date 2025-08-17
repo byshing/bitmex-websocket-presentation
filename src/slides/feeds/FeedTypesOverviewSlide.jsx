@@ -67,20 +67,6 @@ export default function FeedTypesOverviewSlide() {
             <ListItem><strong>publicNotifications</strong> - System notifications</ListItem>
             <ListItem><strong>privateNotifications</strong> - Individual notifications</ListItem>
           </UnorderedList>
-          
-          <Box 
-            margin="15px 0 0"
-            padding="10px"
-            style={{
-              background: 'rgba(255, 215, 0, 0.1)',
-              border: '1px solid rgba(255, 215, 0, 0.3)',
-              borderRadius: '6px'
-            }}
-          >
-            <Text color="primary" fontSize="11px" fontWeight="bold">
-              💡 Most trading apps focus on orderBookL2_25, trade, and authenticated feeds
-            </Text>
-          </Box>
         </Box>
       </Grid>
     </Slide>

@@ -21,7 +21,7 @@ export default function StateUpdateSlide() {
             <ListItem>Fixed set of records (state)</ListItem>
             <ListItem>INSERT once, then UPDATE</ListItem>
             <ListItem>Examples: position, margin, wallet</ListItem>
-            <ListItem>Perfect for reactive UIs</ListItem>
+            <ListItem>Perfect for signals (signals) </ListItem>
           </UnorderedList>
         </Box>
 
@@ -31,14 +31,14 @@ export default function StateUpdateSlide() {
 {
   "table": "position", 
   "action": "partial",
-  "data": [{"symbol": "XBTUSD", "currentQty": 0}]
+  "data": [{"account": 1,"symbol": "XBTUSD", "currentQty": 0}]
 }
 
 // State change
 {
   "table": "position",
   "action": "update", 
-  "data": [{"symbol": "XBTUSD", "currentQty": 500}]
+  "data": [{"account": 1,"symbol": "XBTUSD", "currentQty": 500}]
 }`}
           </CodePane>
         </Box>
