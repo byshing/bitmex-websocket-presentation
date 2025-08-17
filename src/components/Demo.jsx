@@ -210,27 +210,6 @@ const CheckboxLabel = styled.label`
   }
 `
 
-const ModeToggle = styled.div`
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  justify-content: center;
-`
-
-const ToggleButton = styled.button`
-  background: ${props => props.active ? '#ffd700' : '#444'};
-  color: ${props => props.active ? '#000' : '#fff'};
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-
-  &:hover {
-    background: ${props => props.active ? '#e6c200' : '#555'};
-  }
-`
-
 const EnvironmentSelect = styled.select`
   width: 100%;
   padding: 8px 12px;
@@ -271,7 +250,6 @@ const ErrorMessage = styled.div`
 `
 
 function Demo() {
-  const [mode, setMode] = useState('simulation') // 'simulation' or 'live'
   const [environment, setEnvironment] = useState('testnet') // 'devhk', 'testnet', 'prod'
   const [isConnected, setIsConnected] = useState(false)
   const [logs, setLogs] = useState('')
@@ -335,7 +313,7 @@ function Demo() {
     return CryptoJS.HmacSHA256(message, apiSecret).toString()
   }
 
-  const connectLive = () => {
+  const connect = () => {
     if (wsRef.current) {
       wsRef.current.close()
     }
@@ -452,36 +430,9 @@ function Demo() {
     }
   }
 
-  const connectDemo = () => {
-    setIsConnected(true)
-    setError('')
-    log('Demo connected to BitMEX WebSocket simulation')
-    setMessageCount(0)
-    
-    // Simulate receiving messages
-    const interval = setInterval(() => {
-      if (Math.random() > 0.3) {
-        setMessageCount(prev => prev + 1)
-        setLastUpdate(new Date().toTimeString().split(' ')[0])
-        
-        const messageTypes = ['execution', 'orderBookL2', 'position']
-        const actions = ['insert', 'update', 'delete']
-        const messageType = messageTypes[Math.floor(Math.random() * messageTypes.length)]
-        const action = actions[Math.floor(Math.random() * actions.length)]
-        
-        log(`${action.toUpperCase()} received for ${messageType}`)
-      }
-    }, 2000)
-
-    // Store interval reference
-    window.demoInterval = interval
-  }
-
   const disconnect = () => {
-    if (mode === 'live' && wsRef.current) {
+    if (wsRef.current) {
       wsRef.current.close(1000, 'User requested disconnect')
-    } else if (mode === 'simulation' && window.demoInterval) {
-      clearInterval(window.demoInterval)
     }
     
     setIsConnected(false)
@@ -505,55 +456,36 @@ function Demo() {
       if (wsRef.current) {
         wsRef.current.close()
       }
-      if (window.demoInterval) {
-        clearInterval(window.demoInterval)
-      }
     }
   }, [])
 
   return (
     <DemoContainer>
-      <Title>BitMEX WebSocket Demo</Title>
+      <Title>BitMEX WebSocket Live Demo</Title>
       <Description>
-        Connect to real BitMEX WebSocket API or use simulation mode. 
-        Configure feeds and authentication to see live data in action.
+        Connect to real BitMEX WebSocket API and see live data in action. 
+        Configure feeds and authentication to receive real-time market data.
       </Description>
 
       <ConfigSection>
-        <ConfigTitle>Connection Mode</ConfigTitle>
-        <ModeToggle>
-          <ToggleButton 
-            active={mode === 'simulation'} 
-            onClick={() => setMode('simulation')}
+        <ConfigTitle>WebSocket Configuration</ConfigTitle>
+        
+        <FormGroup>
+          <Label>Environment</Label>
+          <EnvironmentSelect
+            value={environment}
+            onChange={(e) => setEnvironment(e.target.value)}
           >
-            Simulation
-          </ToggleButton>
-          <ToggleButton 
-            active={mode === 'live'} 
-            onClick={() => setMode('live')}
-          >
-            Live Connection
-          </ToggleButton>
-        </ModeToggle>
-
-        {mode === 'live' && (
-          <>
-            <FormGroup>
-              <Label>Environment</Label>
-              <EnvironmentSelect
-                value={environment}
-                onChange={(e) => setEnvironment(e.target.value)}
-              >
-                {Object.entries(environments).map(([key, env]) => (
-                  <option key={key} value={key}>
-                    {env.name} - {env.description}
-                  </option>
-                ))}
-              </EnvironmentSelect>
-              <EnvironmentInfo>
-                URL: {environments[environment].url}
-              </EnvironmentInfo>
-            </FormGroup>
+            {Object.entries(environments).map(([key, env]) => (
+              <option key={key} value={key}>
+                {env.name} - {env.description}
+              </option>
+            ))}
+          </EnvironmentSelect>
+          <EnvironmentInfo>
+            URL: {environments[environment].url}
+          </EnvironmentInfo>
+        </FormGroup>
 
             <FormGroup>
               <Label>API Key (optional - for private feeds)</Label>
@@ -590,8 +522,6 @@ function Demo() {
                 ))}
               </CheckboxGroup>
             </FormGroup>
-          </>
-        )}
       </ConfigSection>
 
       {error && (
@@ -600,14 +530,14 @@ function Demo() {
 
       <StatusContainer connected={isConnected}>
         {isConnected ? 
-          `Connected - ${mode === 'live' ? 'Live BitMEX' : 'Simulation'} Mode` : 
+          `Connected - Live BitMEX (${environments[environment].name})` : 
           'Disconnected'
         }
       </StatusContainer>
 
       <ControlsContainer>
         <Button 
-          onClick={mode === 'live' ? connectLive : connectDemo} 
+          onClick={connect} 
           disabled={isConnected}
         >
           Connect
@@ -639,7 +569,7 @@ function Demo() {
             </div>
             <div className="metric">
               <span className="label">Mode:</span>
-              <span className="value">{mode === 'live' ? `Live (${environments[environment].name})` : 'Simulation'}</span>
+              <span className="value">Live ({environments[environment].name})</span>
             </div>
             <div className="metric">
               <span className="label">Last Update:</span>

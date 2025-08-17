@@ -129,7 +129,6 @@ function App() {
         <InfiniteInsertSlide />
         <StateUpdateSlide />
         <OrderBookSlide />
-        <ImplementationSlide />
         <ErrorHandlingSlide />
         <KeyTakeawaysSlide />
         <ThankYouSlide />
