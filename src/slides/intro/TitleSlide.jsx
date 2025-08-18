@@ -45,6 +45,34 @@ export default function TitleSlide() {
         >
           Understanding real-time data streams and state synchronization
         </Text>
+        <Box marginTop="80px">
+          <Text fontSize="18px">
+            GitHub Repository:
+          </Text>
+          <a 
+            href="https://github.com/byshing/bitmex-websocket-presentation" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={{
+              color: '#60a5fa',
+              textDecoration: 'none',
+              fontSize: '20px',
+              fontWeight: 500,
+              textShadow: '0 2px 8px rgba(96, 165, 250, 0.3)',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.color = '#93c5fd'
+              e.target.style.textShadow = '0 2px 12px rgba(96, 165, 250, 0.5)'
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.color = '#60a5fa'
+              e.target.style.textShadow = '0 2px 8px rgba(96, 165, 250, 0.3)'
+            }}
+          >
+            github.com/byshing/bitmex-websocket-presentation
+          </a>
+        </Box>
       </Box>
     </Slide>
   )
